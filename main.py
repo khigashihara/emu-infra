@@ -6,36 +6,39 @@ import network
 
 
 def main()-> None:
+    hp = HP.hypervisor()
+    #network
     network1 = network.Network("net1","192.168.10.0/24")
+    switch1 = network.switch(network1)
+
     conf = vm.vm_config(
             name = "hoge",
             cpu = 4,
             memory = 64,
             disk_size = 256,
             nic_num = 0,
-        )
+    )
 
-    hp = HP.hypervisor()
     hp.vm_create(conf)
     hp.vm_start("hoge")
-    hp.vm_add_nic("hoge",network1,"192.168.10.12")
+    hp.vm_add_nic("hoge",switch1,"192.168.10.10")
     
     conf2 = conf
     conf2.name = "huga"
     hp.vm_create(conf2)
-    hp.vm_add_nic("huga",network1,"192.168.10.13")
+    hp.vm_add_nic("huga",switch1,"192.168.10.11")
     # hp.vm_stop("hoge")
     # hp.vm_delete("hoge")
 
-    hp.show_vm_list()
+    #hp.show_vm_list()
     
     vm1 = hp.vm_get("hoge")
-    vm1.send_message("192.168.10.13","hello world")
+    vm1.send_message("192.168.10.11","hello world")
 
     vm2 = hp.vm_get("huga")
     vm2.receve_message()
 
-    vm2.send_message("192.168.10.12","test message")
+    vm2.send_message("192.168.10.10","test message")
     vm1.receve_message()
 
 if __name__ == "__main__":

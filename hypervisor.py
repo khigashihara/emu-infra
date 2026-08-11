@@ -43,10 +43,11 @@ class hypervisor:
         instance = _get_instance(self.vms, vm_name)
         instance.show_info()
 
-    def vm_add_nic(self,vm_name,network,ip):
+    def vm_add_nic(self,vm_name,switch,ip):
         instance = _get_instance(self.vms, vm_name)
         name = instance.add_nic()
-        instance.nic_linkup(name,ip,network)
+        instance.nic_linkup(name,switch)
+        instance.nic_get_ip(name,switch,ip)
 
     def vm_get(self,vm_name) -> VM:
         return _get_instance(self.vms, vm_name)
