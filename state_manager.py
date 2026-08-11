@@ -1,9 +1,6 @@
 #!/bin/python3
 
 class running:
-    def __init__(self):
-        print("start")
-
     def status(self):
         return self.__class__.__name__
 
@@ -15,9 +12,6 @@ class running:
         return stopped()
 
 class stopped:
-    def __init__(self):
-        print("stop")
-
     def status(self):
         return self.__class__.__name__
 
