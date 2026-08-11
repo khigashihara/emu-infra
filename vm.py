@@ -18,7 +18,7 @@ class NIC:
         self.state = "up"
         network.add_to_net(self.ip, self)
         self.network = network
-        print(f"{self.name} is linkuped !!")
+        print(f"{self.name} is linkupped !!")
 
     def linkDown(self):
         self.ip = ""
@@ -101,9 +101,8 @@ class VM:
         print(f"Memory: {self.memory}GB")
         print(f"Status: {self.status.status()}")
         print(f"disk {self.disk.name}: {self.disk.size} GB")
-        #print(f"nic: {self.nic.name}")
         print(f"nic info:")
-        print(self.nics.keys())
+        print([i for i in self.nics])
         print()
 
     def add_nic(self)->None:

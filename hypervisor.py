@@ -48,7 +48,7 @@ class hypervisor:
         instance.add_nic()
         instance.nic_linkup(name,ip,network)
 
-    def vm_get(self,vm_name):
+    def vm_get(self,vm_name) -> VM:
         return _get_instance(self.vms, vm_name)
 
 #    def vm_send_message(self,vm_name,target_ip, message):
