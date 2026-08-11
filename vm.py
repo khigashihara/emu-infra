@@ -35,7 +35,9 @@ class NIC:
         print(f"ip: {self.ip}")
 
     def send(self,target_ip,message):
-        self.network.send(self.ip, target_ip, message)
+        #create packet
+        packet = nt.Packet(self.ip, target_ip,message)
+        self.network.send(packet)
 
     def check_reachable(self,target_ip):
         ip_table = self.network.show_ip_table()
@@ -133,5 +135,8 @@ class VM:
         for this in self.nics:
             data = self.nics[this].recever
             if data != None:
-                print(data)
-
+                while True:
+                    d = data.pop()
+                    print(f"{d[1]} from {d[0]}")
+                    if len(data)==0:
+                        break

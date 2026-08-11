@@ -1,5 +1,16 @@
 #!/bin/python3
 
+class Packet:
+    def __init__(
+        self,
+        src_ip,
+        dst_ip,
+        payload
+    ):
+        self.src_ip = src_ip
+        self.dst_ip = dst_ip
+        self.payload = payload
+
 class Network:
     def __init__(self,name,subnet):
         self.name = ""
@@ -15,7 +26,7 @@ class Network:
     def show_ip_table(self):
         return self.ip_table
 
-    def send(self,souce_ip,target_ip,payload):
+    def send(self,packet: Packet):
         #print(f"{payload}!! from {souce_ip}, to {target_ip}")
-        target = self.ip_table[target_ip]
-        target.recever.append([souce_ip,payload])
+        target = self.ip_table[packet.dst_ip]
+        target.recever.append([packet.src_ip,packet.payload])
