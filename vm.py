@@ -111,6 +111,7 @@ class VM:
         nic_nums = len(self.nics)
         new_nic = NIC(nic_nums+1)
         self.nics[new_nic.name] = new_nic
+        return new_nic.name
 
     def nic_linkup(self,name,ip,network)->None:
         nic = self.nics[name]

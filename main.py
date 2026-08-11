@@ -18,12 +18,12 @@ def main()-> None:
     hp = HP.hypervisor()
     hp.vm_create(conf)
     hp.vm_start("hoge")
-    hp.vm_add_nic("hoge","eno1",network1,"192.168.10.12")
+    hp.vm_add_nic("hoge",network1,"192.168.10.12")
     
     conf2 = conf
     conf2.name = "huga"
     hp.vm_create(conf2)
-    hp.vm_add_nic("huga","eno1",network1,"192.168.10.13")
+    hp.vm_add_nic("huga",network1,"192.168.10.13")
     # hp.vm_stop("hoge")
     # hp.vm_delete("hoge")
 
